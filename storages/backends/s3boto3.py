@@ -492,7 +492,7 @@ class S3Boto3Storage(BaseStorage):
         content_type = getattr(content, 'content_type', None)
         content_type = content_type or _type or self.default_content_type
 
-        params['ContentType'] = content_type
+        params['ContentType'] = str(content_type) #Ensure this can't strangely be of type <bytes> instead of <str> 
         if encoding:
             params['ContentEncoding'] = encoding
 
